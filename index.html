@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="پورتفولیو شخصی - طراح و توسعه‌دهنده وب" />
+    <title>پورتفولیو | خداداد شفایی </title>
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1s ease-in',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    
+    <!-- Font -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+
+    <!-- ============ NAVBAR ============ -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#home" class="text-2xl font-bold gradient-text">خداداد شفایی</a>
+        
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex gap-8 items-center">
+            <li><a href="#home" class="nav-link">خانه</a></li>
+            <li><a href="#about" class="nav-link">درباره من</a></li>
+            <li><a href="#skills" class="nav-link">مهارت‌ها</a></li>
+            <li><a href="#projects" class="nav-link">پروژه‌ها</a></li>
+            <li><a href="#contact" class="nav-link">تماس</a></li>
+        </ul>
+        
+        <!-- سمت چپ: دکمه دارک مود + منوی موبایل -->
+        <div class="flex items-center gap-3">
+            <!-- دکمه دارک مود (همیشه نمایش داده می‌شود) -->
+            <button id="theme-toggle" 
+                    class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all"
+                    aria-label="تغییر حالت">
+                <i class="fas fa-moon dark:hidden text-slate-700"></i>
+                <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+            </button>
+            
+            <!-- دکمه منوی موبایل -->
+            <button id="menu-toggle" class="md:hidden text-2xl" aria-label="منو">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-slate-900 shadow-lg">
+        <ul class="flex flex-col p-4 gap-4">
+            <li><a href="#home" class="mobile-link">خانه</a></li>
+            <li><a href="#about" class="mobile-link">درباره من</a></li>
+            <li><a href="#skills" class="mobile-link">مهارت‌ها</a></li>
+            <li><a href="#projects" class="mobile-link">پروژه‌ها</a></li>
+            <li><a href="#contact" class="mobile-link">تماس</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- ============ HERO SECTION ============ -->
+<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <!-- Background Decoration -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- ستون متن (سمت راست در RTL) -->
+            <div class="text-center md:text-right animate-fade-in">
+                <p class="text-primary text-lg mb-4">سلام 👋 خوش آمدید</p>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">خدا داد</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl mb-6 text-slate-600 dark:text-slate-400">
+                    <span id="typed-text"></span>
+                    <span class="cursor">|</span>
+                </h2>
+                <p class="text-lg mb-8 text-slate-600 dark:text-slate-400 leading-relaxed">
+                    بنیان‌گذار <span class="font-semibold text-primary">Khuda Dad English Academy</span> — 
+                    مدرس زبان انگلیسی، پایتون و توسعه‌دهنده وب. با تجربه تدریس حضوری و آنلاین، 
+                    در کنار ساخت پروژه‌های وب مدرن، همراه شما در مسیر یادگیری و پیشرفت هستم.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-graduation-cap ml-2"></i>شروع یادگیری
+                    </a>
+                    <a href="#projects" class="btn-outline">
+                        <i class="fas fa-briefcase ml-2"></i>مشاهده پروژه‌ها
+                    </a>
+                    <a href="assets/resume.pdf" download class="btn-outline">
+                        <i class="fas fa-download ml-2"></i>دانلود رزومه
+                    </a>
+                </div>
+                
+                <div class="flex gap-4 mt-8 justify-center md:justify-start">
+                    <a href="https://www.facebook.com/YOUR_PAGE" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/YOUR_PAGE" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/username" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:email@example.com" class="social-icon">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- ستون عکس (سمت چپ در RTL) -->
+            <div class="flex justify-center md:justify-end items-center animate-fade-in">
+                <div class="relative w-72 h-72 md:w-96 md:h-96">
+                    <!-- حلقه گرادیانت دور عکس -->
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-float">
+                        <img src="./assets/images/portfolio.png" alt="Profile" 
+                             class="w-full h-full rounded-full object-cover bg-white" />
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-primary">
+        <i class="fas fa-chevron-down text-2xl"></i>
+    </a>
+</section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+<section id="about" class="py-20 bg-white dark:bg-slate-900">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="section-title">درباره من</h2>
+            <p class="section-subtitle">با من و مسیر کاری‌ام بیشتر آشنا شوید</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- عکس About -->
+            <div class="reveal flex justify-center">
+                <img src="assets/images/about.png" alt="خداداد شفایی" 
+                     class="rounded-2xl shadow-xl w-full max-w-md object-cover" />
+            </div>
+            
+            <!-- متن About -->
+            <div class="reveal">
+                <h3 class="text-2xl font-bold mb-4">
+                    مدرس زبان انگلیسی، پایتون و توسعه‌دهنده فرانت‌اند
+                </h3>
+                
+                <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    من <span class="font-semibold text-primary">خداداد شفایی</span> هستم، 
+                    بنیان‌گذار آکادمی <span class="font-semibold text-primary">Khuda Dad English Academy</span>. 
+                    با حدود <span class="font-semibold">۲ سال تجربه تدریس</span>، 
+                    افتخار همراهی ده‌ها زبان‌آموز را در مسیر یادگیری داشته‌ام.
+                </p>
+                
+                <!-- بخش تدریس -->
+                <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    تخصص اصلی من تدریس <span class="font-semibold">زبان انگلیسی در تمام سطوح</span> است — 
+                    از مبتدی تا پیشرفته و مکالمه. علاوه بر این، 
+                    <span class="font-semibold">پایتون</span> را در سطوح مبتدی و متوسط 
+                    به‌صورت کاربردی و پروژه‌محور تدریس می‌کنم.
+                </p>
+                
+                <!-- بخش فرانت‌اند وب -->
+                <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    در کنار تدریس، به‌عنوان <span class="font-semibold">توسعه‌دهنده فرانت‌اند</span> 
+                    نیز فعالیت می‌کنم و پروژه‌های وب مدرن و ریسپانسیو می‌سازم. 
+                    تکنولوژی‌هایی که با آن‌ها کار می‌کنم شامل:
+                </p>
+                
+                <!-- تکنولوژی‌های فرانت‌اند -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="tech-tag">
+                        <i class="fab fa-html5 ml-1"></i> HTML
+                    </span>
+                    <span class="tech-tag">
+                        <i class="fab fa-css3-alt ml-1"></i> CSS
+                    </span>
+                    <span class="tech-tag">
+                        <i class="fab fa-js ml-1"></i> JavaScript
+                    </span>
+                    <span class="tech-tag">
+                        <i class="fas fa-wind ml-1"></i> Tailwind CSS
+                    </span>
+                    <span class="tech-tag">
+                        <i class="fab fa-react ml-1"></i> React
+                    </span>
+                    <span class="tech-tag">
+                        <i class="fab fa-git-alt ml-1"></i> Git
+                    </span>
+                    <span class="tech-tag">
+                        <i class="fab fa-github ml-1"></i> GitHub
+                    </span>
+                </div>
+                
+                <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                    هدف من ارائه آموزش‌های <span class="font-semibold text-primary">ساده، کاربردی و اصولی</span> 
+                    و در کنار آن، ساخت پروژه‌های وب با کیفیت و مدرن است. 
+                    تدریس حضوری در مرکز آموزشی ستاره بینظیر و آنلاین از طریق صفحات فیسبوک و اینستاگرام 
+                    Khuda Dad English Academy انجام می‌شود.
+                </p>
+                
+                <!-- اطلاعات تماس -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="info-item">
+                        <span>📧 ایمیل:</span>
+                        <a href="mailto:shafaee.k.786@gmail.com" 
+                           class="hover:text-primary transition" dir="ltr">
+                            shafaee.k.786@gmail.com
+                        </a>
+                    </div>
+                    <div class="info-item">
+                        <span>📱 تلفن:</span>
+                        <a href="tel:+93764134922" 
+                           class="hover:text-primary transition" dir="ltr">
+                            +93 76 413 4922
+                        </a>
+                    </div>
+                    <div class="info-item">
+                        <span>📍 مکان:</span>
+                        کابل، افغانستان
+                    </div>
+                    <div class="info-item">
+                        <span>💼 وضعیت:</span>
+                        <span class="text-green-500 font-semibold">آماده همکاری</span>
+                    </div>
+                </div>
+                
+                <!-- دکمه‌ها -->
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-paper-plane ml-2"></i>تماس با من
+                    </a>
+                    <a href="#projects" class="btn-outline">
+                        <i class="fas fa-briefcase ml-2"></i>مشاهده پروژه‌ها
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ============ SKILLS SECTION ============ -->
+<section id="skills" class="py-20">
+    <div class="container mx-auto px-6">
+        
+        <!-- ===== بخش اول: مهارت‌های آموزشی ===== -->
+        <div class="text-center mb-16">
+            <h2 class="section-title">مهارت‌های من</h2>
+            <p class="section-subtitle">توانایی‌ها و تخصص‌های من در یک نگاه</p>
+        </div>
+        
+        <!-- آموزش -->
+        <div class="mb-20">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold">مهارت‌های آموزشی</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">تدریس و مدیریت آکادمی</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- زبان انگلیسی -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-blue-500/10">
+                        <i class="fas fa-language text-blue-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">زبان انگلیسی</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        تمام سطوح
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۱۰۰٪</span>
+                </div>
+                
+                <!-- پایتون -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-yellow-500/10">
+                        <i class="fab fa-python text-yellow-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Python</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        مبتدی و متوسط
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۸۵٪</span>
+                </div>
+                
+                <!-- تدریس آنلاین -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-green-500/10">
+                        <i class="fas fa-laptop text-green-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">تدریس آنلاین</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        فیسبوک و اینستاگرام
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۹۰٪</span>
+                </div>
+                
+                <!-- مدیریت آکادمی -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-orange-500/10">
+                        <i class="fas fa-users text-orange-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">مدیریت آکادمی</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        Khuda Dad English
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۸۵٪</span>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- ===== بخش دوم: تکنولوژی‌های وب ===== -->
+        <div>
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-xl">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold">تکنولوژی‌های وب</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">ابزارهایی که با آن‌ها پروژه می‌سازم</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- HTML5 -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-orange-500/10">
+                        <i class="fab fa-html5 text-orange-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">HTML5</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        ساختار صفحات وب
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 95%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۹۵٪</span>
+                </div>
+                
+                <!-- CSS3 -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-blue-500/10">
+                        <i class="fab fa-css3-alt text-blue-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">CSS3</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        استایل و طراحی
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۹۰٪</span>
+                </div>
+                
+                <!-- JavaScript -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-yellow-500/10">
+                        <i class="fab fa-js text-yellow-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">JavaScript</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        تعامل و پویایی
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۸۵٪</span>
+                </div>
+                
+                <!-- Tailwind CSS -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-cyan-500/10">
+                        <i class="fas fa-wind text-cyan-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Tailwind CSS</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        فریم‌ورک استایل
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۹۰٪</span>
+                </div>
+                
+                <!-- React -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-cyan-500/10">
+                        <i class="fab fa-react text-cyan-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">React</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        کتابخانه UI
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۸۰٪</span>
+                </div>
+                
+                <!-- Git & GitHub -->
+                <div class="skill-card reveal">
+                    <div class="icon-wrapper bg-red-500/10">
+                        <i class="fab fa-git-alt text-red-500 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Git & GitHub</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        مدیریت نسخه
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                    <span class="text-sm font-semibold mt-2 inline-block">۸۵٪</span>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+    <!-- ============ PROJECTS SECTION ============ -->
+<section id="projects" class="py-20 bg-white dark:bg-slate-900">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="section-title">پروژه‌های من</h2>
+            <p class="section-subtitle">نمونه کارها و پروژه‌های اخیر</p>
+        </div>
+        
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12" id="filter-buttons">
+            <button class="filter-btn active" data-filter="all">همه</button>
+            <button class="filter-btn" data-filter="web">پروژه‌های وب</button>
+            <button class="filter-btn" data-filter="education">آموزشی</button>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            
+            <!-- ===== پروژه ۱: وب‌سایت آکادمی ===== -->
+            <div class="project-card reveal" data-category="web">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" 
+                         alt="وب‌سایت آکادمی" 
+                         class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="project-overlay">
+                        <a href="#" class="project-btn" title="مشاهده دمو">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="#" class="project-btn" title="کد گیت‌هاب">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-primary font-semibold">پروژه وب</span>
+                    <h3 class="text-xl font-bold mt-2">وب‌سایت آکادمی</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        وب‌سایت رسمی Khuda Dad English Academy با طراحی مدرن و ریسپانسیو.
+                    </p>
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== پروژه ۲: لندینگ پیج دوره ===== -->
+            <div class="project-card reveal" data-category="web">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800" 
+                         alt="لندینگ پیج دوره" 
+                         class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="project-overlay">
+                        <a href="#" class="project-btn" title="مشاهده دمو">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="#" class="project-btn" title="کد گیت‌هاب">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-primary font-semibold">پروژه وب</span>
+                    <h3 class="text-xl font-bold mt-2">لندینگ پیج دوره زبان</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        صفحه فرود حرفه‌ای برای معرفی و ثبت‌نام دوره‌های زبان انگلیسی.
+                    </p>
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== پروژه ۳: اپلیکیشن React ===== -->
+            <div class="project-card reveal" data-category="web">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800" 
+                         alt="اپلیکیشن React" 
+                         class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="project-overlay">
+                        <a href="#" class="project-btn" title="مشاهده دمو">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="#" class="project-btn" title="کد گیت‌هاب">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-primary font-semibold">پروژه وب</span>
+                    <h3 class="text-xl font-bold mt-2">اپلیکیشن مدیریت زبان‌آموزان</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        اپلیکیشن مدیریت زبان‌آموزان با React و قابلیت ثبت نمرات و حضور.
+                    </p>
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== پروژه ۴: دوره آنلاین انگلیسی ===== -->
+            <div class="project-card reveal" data-category="education">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800" 
+                         alt="دوره آنلاین انگلیسی" 
+                         class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="project-overlay">
+                        <a href="#" class="project-btn" title="مشاهده دوره">
+                            <i class="fas fa-play"></i>
+                        </a>
+                        <a href="#" class="project-btn" title="اطلاعات بیشتر">
+                            <i class="fas fa-info"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-primary font-semibold">آموزشی</span>
+                    <h3 class="text-xl font-bold mt-2">دوره آنلاین زبان انگلیسی</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        دوره جامع زبان انگلیسی از مبتدی تا پیشرفته، به‌صورت آنلاین و حضوری.
+                    </p>
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tech-tag">تدریس</span>
+                        <span class="tech-tag">آنلاین</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== پروژه ۵: دوره آموزش پایتون ===== -->
+            <div class="project-card reveal" data-category="education">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800" 
+                         alt="دوره آموزش پایتون" 
+                         class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="project-overlay">
+                        <a href="#" class="project-btn" title="مشاهده دوره">
+                            <i class="fas fa-play"></i>
+                        </a>
+                        <a href="#" class="project-btn" title="اطلاعات بیشتر">
+                            <i class="fas fa-info"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-primary font-semibold">آموزشی</span>
+                    <h3 class="text-xl font-bold mt-2">دوره آموزش پایتون</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        دوره پروژه‌محور پایتون از مقدماتی تا متوسط، همراه با تمرین عملی.
+                    </p>
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">پروژه‌محور</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== پروژه ۶: محتوای آموزشی اینستاگرام ===== -->
+            <div class="project-card reveal" data-category="education">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800" 
+                         alt="محتوای آموزشی اینستاگرام" 
+                         class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="project-overlay">
+                        <a href="#" class="project-btn" title="مشاهده پیج">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="project-btn" title="فیسبوک">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-primary font-semibold">آموزشی</span>
+                    <h3 class="text-xl font-bold mt-2">محتوای آموزشی آنلاین</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        تولید محتوای آموزشی زبان انگلیسی در فیسبوک و اینستاگرام.
+                    </p>
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tech-tag">اینستاگرام</span>
+                        <span class="tech-tag">فیسبوک</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+    <!-- ============ CONTACT SECTION ============ -->
+<section id="contact" class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="section-title">تماس با من</h2>
+            <p class="section-subtitle">برای یادگیری، همکاری یا سوال با من در ارتباط باشید</p>
+        </div>
+        
+        <!-- کارت‌های تماس -->
+        <div class="grid md:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto">
+            
+            <!-- ایمیل -->
+            <a href="mailto:shafaee.k.786@gmail.com" class="contact-card reveal group">
+                <div class="icon-wrapper bg-blue-500/10 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-envelope text-blue-500 group-hover:text-white text-2xl"></i>
+                </div>
+                <h3 class="font-bold mb-2">ایمیل</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm break-all" dir="ltr">
+                    shafaee.k.786@gmail.com
+                </p>
+            </a>
+            
+            <!-- تلفن / واتساپ -->
+            <a href="https://wa.me/93764134922" target="_blank" class="contact-card reveal group">
+                <div class="icon-wrapper bg-green-500/10 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                    <i class="fab fa-whatsapp text-green-500 group-hover:text-white text-2xl"></i>
+                </div>
+                <h3 class="font-bold mb-2">واتساپ</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm" dir="ltr">
+                    +93 76 413 4922
+                </p>
+            </a>
+            
+            <!-- مکان -->
+            <div class="contact-card reveal group">
+                <div class="icon-wrapper bg-pink-500/10 group-hover:bg-pink-500 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-map-marker-alt text-pink-500 group-hover:text-white text-2xl"></i>
+                </div>
+                <h3 class="font-bold mb-2">مکان</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                    کابل، افغانستان
+                </p>
+            </div>
+            
+        </div>
+        
+        <!-- شبکه‌های اجتماعی -->
+        <div class="text-center mb-12">
+            <p class="text-slate-600 dark:text-slate-400 mb-4">یا در شبکه‌های اجتماعی دنبال کنید</p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="https://www.facebook.com/profile.php?id=61585517427666" target="_blank" 
+                   class="social-icon-lg" title="فیسبوک">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/english_with.khudadad?stkn=MWRhaThpeGNteHQxcA==" target="_blank" 
+                   class="social-icon-lg" title="اینستاگرام">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/khudadad-shafaee" target="_blank" 
+                   class="social-icon-lg" title="گیت‌هاب">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/username" target="_blank" 
+                   class="social-icon-lg" title="لینکدین">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://t.me/username" target="_blank" 
+                   class="social-icon-lg" title="تلگرام">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- فرم تماس -->
+        <form id="contact-form" class="max-w-2xl mx-auto reveal">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-2">ارسال پیام</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                    فرم زیر را پر کنید، در اسرع وقت پاسخ می‌دهم
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <input type="text" name="name" placeholder="نام شما" required class="form-input" />
+                <input type="email" name="email" placeholder="ایمیل شما" required class="form-input" />
+            </div>
+            
+            <input type="text" name="subject" placeholder="موضوع پیام" required class="form-input mb-6 w-full" />
+            
+            <textarea name="message" rows="5" placeholder="پیام شما..." required class="form-input mb-6 w-full"></textarea>
+            
+            <button type="submit" class="btn-primary w-full flex items-center justify-center gap-2">
+                <i class="fas fa-paper-plane"></i>
+                ارسال پیام
+            </button>
+        </form>
+        
+    </div>
+</section>
+
+    <!-- ============ FOOTER ============ -->
+    <!-- ============ FOOTER ============ -->
+<footer class="bg-slate-900 dark:bg-slate-950 text-white pt-16 pb-6 relative overflow-hidden">
+    
+    <!-- Decoration -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        
+        <!-- بخش اصلی -->
+        <div class="grid md:grid-cols-3 gap-10 mb-12">
+            
+            <!-- ستون ۱: معرفی -->
+            <div>
+                <h3 class="text-2xl font-bold gradient-text mb-4">خداداد شفایی</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm">
+                    مدرس زبان انگلیسی، پایتون و توسعه‌دهنده فرانت‌اند. 
+                    بنیان‌گذار آکادمی Khuda Dad English Academy — 
+                    آموزش اصولی و کاربردی برای همه.
+                </p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/KhudaDadEnglishAcademy" target="_blank" 
+                       class="footer-social" title="فیسبوک">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/KhudaDadEnglishAcademy" target="_blank" 
+                       class="footer-social" title="اینستاگرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/username" target="_blank" 
+                       class="footer-social" title="گیت‌هاب">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:shafaee.k.786@gmail.com" 
+                       class="footer-social" title="ایمیل">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- ستون ۲: لینک‌های سریع -->
+            <div>
+                <h4 class="text-lg font-bold mb-4 text-white">لینک‌های سریع</h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="#home" class="footer-link">
+                            <i class="fas fa-chevron-left text-xs ml-2"></i>خانه
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="footer-link">
+                            <i class="fas fa-chevron-left text-xs ml-2"></i>درباره من
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#skills" class="footer-link">
+                            <i class="fas fa-chevron-left text-xs ml-2"></i>مهارت‌ها
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="footer-link">
+                            <i class="fas fa-chevron-left text-xs ml-2"></i>پروژه‌ها
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="footer-link">
+                            <i class="fas fa-chevron-left text-xs ml-2"></i>تماس با من
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- ستون ۳: تماس -->
+            <div>
+                <h4 class="text-lg font-bold mb-4 text-white">تماس با من</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-envelope text-primary mt-1"></i>
+                        <a href="mailto:shafaee.k.786@gmail.com" 
+                           class="footer-link text-sm" dir="ltr">
+                            shafaee.k.786@gmail.com
+                        </a>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fab fa-whatsapp text-primary mt-1"></i>
+                        <a href="https://wa.me/93764134922" target="_blank" 
+                           class="footer-link text-sm" dir="ltr">
+                            +93 76 413 4922
+                        </a>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                        <span class="text-slate-400 text-sm">
+                            کابل، افغانستان
+                        </span>
+                    </li>
+                </ul>
+                
+                <!-- دکمه رزومه -->
+                <a href="assets/resume.pdf" download 
+                   class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <i class="fas fa-download"></i>
+                    دانلود رزومه
+                </a>
+            </div>
+            
+        </div>
+        
+        <!-- خط جداکننده -->
+        <div class="border-t border-slate-700 dark:border-slate-800 pt-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-400 text-sm text-center md:text-right">
+                    © 2026 <span class="text-primary font-semibold">خداداد شفایی</span> — تمامی حقوق محفوظ است.
+                </p>
+                <p class="text-slate-500 text-xs flex items-center gap-1">
+                    ساخته شده با 
+                    <i class="fas fa-heart text-red-500 animate-pulse"></i>
+                    و 
+                    <i class="fab fa-js text-yellow-400"></i>
+                    <i class="fab fa-html5 text-orange-500"></i>
+                    <i class="fas fa-wind text-cyan-400"></i>
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    <!-- Scroll to top -->
+    <button id="scroll-top" class="fixed bottom-8 left-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg opacity-0 invisible transition-all hover:bg-secondary z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
